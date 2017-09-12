@@ -7,19 +7,19 @@ namespace Challenge.Infrastructure.Tests
 {
     // Current test doing directly to the research from Azure Search
     // TODO: Implement mock to test the fonctionnality, not the data
-    public class LocationRepositoryTest
+    public class LocationServiceTest
     {
-        private readonly LocationRepository _repository;
+        private readonly LocationService _repository;
 
-        public LocationRepositoryTest(){
-            _repository = new LocationRepository();
+        public LocationServiceTest(){
+            _repository = new LocationService();
         }
 
         // test to see if given any recherche parameter still returns something
         [Fact]
         public void GetLocationNotEmpty()
         {
-            var searchInput = new Search();
+            var searchInput = new Search("a");
             var result = _repository.GetLocations(searchInput);
             Assert.NotEqual(result.Count, 0);
         }
@@ -31,8 +31,7 @@ namespace Challenge.Infrastructure.Tests
         //[InlineData("حيث خسر يهوذا حذاءه")]
         public void GetLocationEmpty(string search)
         {
-            var searchInput = new Search();
-            searchInput.SearchWord = search;
+            var searchInput = new Search(search);
 
             var result = _repository.GetLocations(searchInput);
             Assert.Equal(result.Count, 0);

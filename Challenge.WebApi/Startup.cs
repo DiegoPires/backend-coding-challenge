@@ -11,6 +11,7 @@ using Microsoft.Extensions.Options;
 using Swashbuckle.AspNetCore.Swagger;
 using Microsoft.Extensions.PlatformAbstractions;
 using System.IO;
+using Challenge.Infrastructure;
 
 namespace backend_coding_challenge
 {
@@ -40,6 +41,9 @@ namespace backend_coding_challenge
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+
+            // inject our service to search location
+            services.AddTransient<ILocationService, LocationService>();
 
             // Register the Swagger generator, defining one or more Swagger documents
             services.AddSwaggerGen(c =>

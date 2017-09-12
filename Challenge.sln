@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Challenge.Infrastructure.Te
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Challenge.WebApi", "Challenge.WebApi\Challenge.WebApi.csproj", "{34FE3FF6-421B-431A-B413-3F30129C21C2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Challenge.WebApi.Tests", "Challenge.WebApi.Tests\Challenge.WebApi.Tests.csproj", "{4C924B39-4797-4FB3-9B89-4CB2C4BF6AB2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -72,5 +74,17 @@ Global
 		{34FE3FF6-421B-431A-B413-3F30129C21C2}.Release|x64.Build.0 = Release|x64
 		{34FE3FF6-421B-431A-B413-3F30129C21C2}.Release|x86.ActiveCfg = Release|x86
 		{34FE3FF6-421B-431A-B413-3F30129C21C2}.Release|x86.Build.0 = Release|x86
+		{4C924B39-4797-4FB3-9B89-4CB2C4BF6AB2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C924B39-4797-4FB3-9B89-4CB2C4BF6AB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C924B39-4797-4FB3-9B89-4CB2C4BF6AB2}.Debug|x64.ActiveCfg = Debug|x64
+		{4C924B39-4797-4FB3-9B89-4CB2C4BF6AB2}.Debug|x64.Build.0 = Debug|x64
+		{4C924B39-4797-4FB3-9B89-4CB2C4BF6AB2}.Debug|x86.ActiveCfg = Debug|x86
+		{4C924B39-4797-4FB3-9B89-4CB2C4BF6AB2}.Debug|x86.Build.0 = Debug|x86
+		{4C924B39-4797-4FB3-9B89-4CB2C4BF6AB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C924B39-4797-4FB3-9B89-4CB2C4BF6AB2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4C924B39-4797-4FB3-9B89-4CB2C4BF6AB2}.Release|x64.ActiveCfg = Release|x64
+		{4C924B39-4797-4FB3-9B89-4CB2C4BF6AB2}.Release|x64.Build.0 = Release|x64
+		{4C924B39-4797-4FB3-9B89-4CB2C4BF6AB2}.Release|x86.ActiveCfg = Release|x86
+		{4C924B39-4797-4FB3-9B89-4CB2C4BF6AB2}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 EndGlobal

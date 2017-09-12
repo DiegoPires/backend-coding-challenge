@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Challenge.Domain;
 using Challenge.Infrastructure;
+using System.Threading.Tasks;
 
 namespace backend_coding_challenge.Controllers
 {
@@ -15,6 +16,16 @@ namespace backend_coding_challenge.Controllers
     [Route("api/v1/[controller]")]
     public class SuggestionsController : Controller
     {
+        ILocationService _service;
+
+        /// <summary>
+        /// Constructor of the controller with injection of the desired service
+        /// </summary>
+        /// <param name="service"></param>
+        public SuggestionsController(ILocationService service){
+            _service = service;
+        }
+
         /// <summary>
         /// Get call to obtain the list of sugestion regarding the parameters done
         /// </summary>
@@ -40,28 +51,25 @@ namespace backend_coding_challenge.Controllers
         /// <returns>List of suggestion for the term used in the search</returns>
         [HttpGet]
         [Produces("application/json")]
-        public JsonResult Get(string q, string longitude, string latitude)
+        public async Task<JsonResult> Get(string q, string longitude, string latitude)
         {
-            using(var _repository = new LocationRepository())
-            {
-                var retour = new Suggestions();
+            var retour = new Suggestions();
 
-                if (!String.IsNullOrEmpty(q)){
+            if (!String.IsNullOrEmpty(q)){
+            
+                // create our DTO to send to the repository
+                Search searchDTO = CreateSearchDTO(q, longitude, latitude);
                 
-                    // create our DTO to send to the repository
-                    Search searchDTO = CreateSearchDTO(q, longitude, latitude);
-                    
-                    // call the repository
-                    var locations = _repository.GetLocations(searchDTO);
-                    
-                    // transfor the return from the repository in the return required for the API
-                    retour = CreateReturnObject(locations);
-                }else{
-                    retour.ListSuggestion = new List<Suggestions.Suggestion>();
-                }
+                // call the repository
+                var locations = await _service.GetLocations(searchDTO);
                 
-                return Json(retour);
+                // transfor the return from the repository in the return required for the API
+                retour = CreateReturnObject(locations);
+            }else{
+                retour.ListSuggestion = new List<Suggestions.Suggestion>();
             }
+            
+            return Json(retour);
         }
 
         private Search CreateSearchDTO(string q, string longitude, string latitude){

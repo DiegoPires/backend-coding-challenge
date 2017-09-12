@@ -1,14 +1,15 @@
 using System;
 using System.Collections.Generic;
 using Challenge.Domain;
+using System.Threading.Tasks;
 
 namespace Challenge.Infrastructure
 {
     /// <summary>
     /// Interface d'implentation du repository de recherche de location
     /// </summary>
-    public interface ILocationRepository : IDisposable
+    public interface ILocationService : IDisposable
     {
-        ICollection<Location> GetLocations(Search search);
+         Task<ICollection<Location>> GetLocations(Search search);
     }
 }

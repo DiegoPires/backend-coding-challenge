@@ -1,19 +1,20 @@
 using System;
 using System.Collections.Generic;
 using Challenge.Domain;
+using System.Threading.Tasks;
 
 namespace Challenge.Infrastructure
 {
     /// <summary>
     /// Implentation of the interface of recherche of location, made to use Azure Search
     /// </summary>
-    public class LocationRepository : ILocationRepository, IDisposable
+    public class LocationService : ILocationService, IDisposable
     {
-        public LocationRepository() 
+        public LocationService() 
         { 
         }
 
-        public ICollection<Location> GetLocations(Search search) {
+        public async Task<ICollection<Location>> GetLocations(Search search) {
 
             List<Location> locations = new List<Location>();
 
