@@ -14,7 +14,7 @@ namespace Challenge.Infrastructure
         { 
         }
 
-        public async Task<ICollection<Location>> GetLocations(Search search) {
+        public async Task<List<Location>> GetLocations(Search search) {
 
             List<Location> locations = new List<Location>();
 

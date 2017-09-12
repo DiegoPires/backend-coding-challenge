@@ -7,7 +7,7 @@ using Challenge.Domain;
 using Challenge.Infrastructure;
 using System.Threading.Tasks;
 
-namespace backend_coding_challenge.Controllers
+namespace Challenge.WebApi.Controllers
 {
     /// <summary>
     /// Main controller responsable to return the suggestion of locations 
@@ -51,7 +51,7 @@ namespace backend_coding_challenge.Controllers
         /// <returns>List of suggestion for the term used in the search</returns>
         [HttpGet]
         [Produces("application/json")]
-        public async Task<JsonResult> Get(string q, string longitude, string latitude)
+        public async Task<JsonResult> Get(string q=null, string longitude=null, string latitude=null)
         {
             var retour = new Suggestions();
 
@@ -76,14 +76,14 @@ namespace backend_coding_challenge.Controllers
             var search = new Search(q);
                  
             search.Longitude = longitude.ToDecimal() ;
-
+            search.Latitude = latitude.ToDecimal();
             //decimal.TryParse(longitude, out search.Longitude);
             //decimal.TryParse(latitude, out search.Latitude);
 
             return search;
         }
 
-        private Suggestions CreateReturnObject(ICollection<Location> locations){
+        private Suggestions CreateReturnObject(List<Location> locations){
             var suggestionsReturn = new Suggestions();
 
             suggestionsReturn.ListSuggestion = new List<Suggestions.Suggestion>();

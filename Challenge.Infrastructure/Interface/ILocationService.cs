@@ -10,6 +10,6 @@ namespace Challenge.Infrastructure
     /// </summary>
     public interface ILocationService : IDisposable
     {
-         Task<ICollection<Location>> GetLocations(Search search);
+         Task<List<Location>> GetLocations(Search search);
     }
 }

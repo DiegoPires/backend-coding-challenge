@@ -1,7 +1,7 @@
 using System;
 using Microsoft.AspNetCore.Mvc;
 
-namespace backend_coding_challenge.Controllers
+namespace Challenge.WebApi.Controllers
 {
     /// <summary>
     /// Home controller created to redirect all routes that are not refined to the swagger doc

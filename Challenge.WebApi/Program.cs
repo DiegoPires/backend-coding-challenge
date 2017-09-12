@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
-namespace backend_coding_challenge
+namespace Challenge.WebApi
 {
     /// <summary>
     /// Main class

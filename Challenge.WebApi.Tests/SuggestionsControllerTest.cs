@@ -1,35 +1,71 @@
 using System;
-using Xunit;
-using Challenge.Domain;
-using Challenge.Infrastructure;
-using Challenge.WebApi;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using backend_coding_challenge.Controllers;
+using Microsoft.AspNetCore.Mvc;
+using Moq;
+using Xunit;
+
+using Challenge.WebApi;
+using Challenge.WebApi.Controllers;
+using Challenge.Domain;
+using Challenge.Infrastructure;
 
 namespace Challenge.WebApi.Tests
 {
     public class SuggestionsControllerTest
     {
         [Fact]
-        public async Task ReturnSomething()
+        public async Task ReturnNothingWhenNothingIsGivenAsTheRechercheCriteria()
         {
-            var search = new Search("whateve");
-            var locations = new List<Location>();
+            // mock prep
+            var mockService = new Mock<ILocationService>();
             
-            // Arrange & Act
-            //var mockService = new Mock<ILocationService>();
-            //mockService.Setup(repo => repo.GetLocations(search))
-            //    .Returns(Task.FromResult(locations));
+            // Declaration and call to the controller
+            var controller = new SuggestionsController(mockService.Object);
+            JsonResult result = await controller.Get();
 
-            //var controller = new SuggestionController(mockService.Object);
-            //controller.ModelState.AddModelError("error","some error");
+            // Tests
+            Assert.IsType<Suggestions>(result.Value);
 
-            // Act
-            //var result = await controller.Get("nada");
+            Suggestions resultObject = (Suggestions)result.Value;
+            Assert.Equal(0, resultObject.ListSuggestion.Count);
+        }
 
-            //var contentResult = Assert.IsType<ICollection<Location>>(result);
-            //Assert.NotEqual(0, contentResult.Count());
+        [Theory]
+        [InlineData("a")]
+        [InlineData("该")]
+        [InlineData("ال")]
+        public async Task ReturnSomethingWhateverWeGive(string dataFromTheory)
+        {
+            // variables used for the MOCK
+            var search = new Search(dataFromTheory);
+            search.Latitude = 0m;
+            search.Longitude = 0m;
+
+            var locations = new List<Location>();
+            locations.Add(new Location {
+                Name = "wordwithana",
+                Latitude = 1.1m,
+                Longitude = 1.1m
+            });
+
+            // Configure the mock of the service to return what we want for the test
+            // TODO: Doesnt work now, GetLocations is not overloaded, locations return nothing
+            // and crashs the test
+            var mockService = new Mock<ILocationService>();
+            mockService.Setup(repo => repo.GetLocations(search))
+                .Returns(Task.FromResult(locations));
+
+            // Declaration and call to the controller
+            var controller = new SuggestionsController(mockService.Object);
+            JsonResult result = await controller.Get(dataFromTheory);
+
+            // tests
+            Assert.IsType<Suggestions>(result.Value);
+
+            Suggestions resultObject = (Suggestions)result.Value;
+            
+            Assert.Equal(1, resultObject.ListSuggestion.Count);
         }
     }
 }

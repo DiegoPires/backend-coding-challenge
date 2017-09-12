@@ -13,7 +13,7 @@ using Microsoft.Extensions.PlatformAbstractions;
 using System.IO;
 using Challenge.Infrastructure;
 
-namespace backend_coding_challenge
+namespace Challenge.WebApi
 {
     /// <summary>
     /// Startup class
