@@ -19,7 +19,8 @@ namespace backend_coding_challenge.Controllers
         /// Get call to obtain the list of sugestion regarding the parameters done
         /// </summary>
         /// <remarks>
-        /// Sample: 
+        ///     # Sample: 
+        ///     ```
         ///     GET /api/v1/suggestions?q=Londo&amp;latitude=43.70011&amp;longitude=-79.4163
         ///     {
         ///         "suggestions": [
@@ -30,12 +31,13 @@ namespace backend_coding_challenge.Controllers
         ///             "score": 0.9
         ///         }
         ///       ]
-        ///     }             
+        ///     }  
+        ///     ```           
         /// </remarks>
-        /// <param name="q">Term to recherche in the location database</param>
+        /// <param name="q">Term to search in the location database</param>
         /// <param name="longitude">Longitude of the caller</param>
         /// <param name="latitude">Latitude of the caller</param>
-        /// <returns>List of suggestion for the term used in the recherche</returns>
+        /// <returns>List of suggestion for the term used in the search</returns>
         [HttpGet]
         [Produces("application/json")]
         public JsonResult Get(string q, string longitude, string latitude)
