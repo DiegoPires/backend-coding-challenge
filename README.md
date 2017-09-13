@@ -88,9 +88,9 @@ Begin by forking this repo and cloning your fork. GitHub has apps for [Mac](http
 
 ## Implementation explanation
 
-- Developed using Asp.net Core 2.0 with C# on a Mac. C# it's not the language I use on a day to day basis now, but it's a language I like and I will problably work with. It's my first time using .net Core, I thought it was a good opportunity to check what it has to offer, specially because I'm using a Mac to code.
-- I choose to use a Mac because it's my main computer now, the one I use to code in other languages, and I heard good things about the support from .net core and from Visual Studio Code (the IDE I developed everything). I might say it was a little challenge to lost all the benefits from Visual Studio (I actually didnt't manage to debug yet, for example)
-- Might say .net Core suffers kind of some problems of "edge" techs: hard to find people with the same problems, need to look a lot more on the incomplet docs, some mysterious errors and incompatibilitys to manage...
+- Developed using Asp.net Core 2.0 with C# on a Mac. C# it's not the language I use on a day to day basis, but it's a language I would like to work with. It's my first time using .net Core, I thought it was a good opportunity to check what it has to offer, specially because I'm using a Mac to code.
+- I choose to use a Mac because it's my main computer now, the one I use to code in other languages, and I heard good things about the support from .net core and from Visual Studio Code (the IDE I developed everything). I might say it was a little challenging to loose all the benefits from Visual Studio (I actually didnt't manage to debug yet, for example)
+- I might say .net Core suffers kind of some problems of "edge" techs: hard to find people with the same problems, need to look a lot more on the incomplet docs, some mysterious errors and incompatibilitys to manage...
 - The route of the API it's actually "api/v1/suggestions". It's a better practice to declare a version for future changes that don't break old stuff.
 - Documentation was provided with Swagger. Just made a generic route to point everytime to it, if the person is not on the API.
 - Tried to comment code that it's more "Magic", otherwise, most of the code speak for himself.
@@ -99,3 +99,4 @@ Begin by forking this repo and cloning your fork. GitHub has apps for [Mac](http
 - Implemented a little test to my service layer too while developpement the layer. It runs direct to Azure Search.
 - Azure Search was chosen because I was already thinking to host the API on Azure and found this IaaS that looked promising. It took all the problems of hosting a database with support for ElasticSearch and it has a strong case about been easy to scale. Founding a start tutorial was not so complicated, just for some details of implementation it's harder to find material. The final implementation it's missing search for the geolocalization and the score going from 0 to 1 (Right now it has it's own algorithm)
 - Overall, I would say it's a good first MVP, need some more time for the details, but offers enought room to grow. And definitly, all the tech stack played a little role on the adaptation.
+- Still not deployed anywhere, plan to use Azure
