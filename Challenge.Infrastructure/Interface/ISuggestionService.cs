@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 namespace Challenge.Infrastructure
 {
     /// <summary>
-    /// Interface d'implentation du repository de recherche de location
+    /// Interface of the implentation of our suggestion service
     /// </summary>
-    public interface ILocationService : IDisposable
+    public interface ISuggestionService : IDisposable
     {
-         Task<List<Location>> GetLocations(Search search);
+         Task<Suggestions> GetSuggestions(Search search);
     }
 }

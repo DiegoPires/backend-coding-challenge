@@ -1,9 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Runtime.Serialization;
-
 namespace Challenge.Domain{
-    
+
+    using System;
+    using System.Collections.Generic;
+    using System.Runtime.Serialization;
+
     /// <summary>
     /// Declaration of the object returned for the API
     /// </summary>

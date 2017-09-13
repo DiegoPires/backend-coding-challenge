@@ -23,9 +23,9 @@ namespace Challenge.Seed
     {
         static void Main(string[] args)
         {
-            Seed();
+            //Seed();
 
-            //Search();
+            Search();
         }
 
 
@@ -202,10 +202,12 @@ namespace Challenge.Seed
             parameters =
                 new SearchParameters()
                 {
-                    Select = new[] { "name", "asciiName", "alternatifName" }
+                    Select = new[] { "name", "geo" },
+                    Query​Type = Microsoft.Azure.Search.Models.QueryType.Full,
+                    SearchFields = new [] { "name", "asciiName", "alternatifName"}
                 };
 
-            results = indexClient.Documents.Search<Location>("", parameters);
+            results = indexClient.Documents.Search<Location>("qu", parameters);
 
             WriteDocuments(results);
         }
@@ -214,7 +216,7 @@ namespace Challenge.Seed
         {
             foreach (SearchResult<Location> result in searchResults.Results)
             {
-                Console.WriteLine(result.Document);
+                Console.WriteLine(" {0} {1}", result.Document.Name, result.Score );
             }
 
             Console.WriteLine();

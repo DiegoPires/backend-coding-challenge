@@ -217,3 +217,5 @@ __pycache__/
 #Mac OSX 
 .DS_Store
 aspnetcore/fundamentals/servers/httpsys/_static/Thumbs.db
+
+appsettings.json

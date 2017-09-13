@@ -1,14 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Challenge.Domain;
-using Challenge.Infrastructure;
-using System.Threading.Tasks;
-
-namespace Challenge.WebApi.Controllers
+﻿namespace Challenge.WebApi.Controllers
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using Microsoft.AspNetCore.Mvc;
+    using Challenge.Domain;
+    using Challenge.Infrastructure;
+    using System.Threading.Tasks;
+
     /// <summary>
     /// Main controller responsable to return the suggestion of locations 
     /// according to the entered criteries
@@ -53,7 +53,7 @@ namespace Challenge.WebApi.Controllers
         [Produces("application/json")]
         public async Task<JsonResult> Get(string q=null, string longitude=null, string latitude=null)
         {
-            var retour = new Suggestions();
+            var suggestions = new Suggestions();
 
             if (!String.IsNullOrEmpty(q)){
             
@@ -61,15 +61,13 @@ namespace Challenge.WebApi.Controllers
                 Search searchDTO = CreateSearchDTO(q, longitude, latitude);
                 
                 // call the repository
-                var locations = await _service.GetLocations(searchDTO);
+                var suggestions = await _service.GetLocations(searchDTO);
                 
-                // transfor the return from the repository in the return required for the API
-                retour = CreateReturnObject(locations);
             }else{
-                retour.ListSuggestion = new List<Suggestions.Suggestion>();
+                suggestions.ListSuggestion = new List<Suggestions.Suggestion>();
             }
             
-            return Json(retour);
+            return Json(suggestions);
         }
 
         private Search CreateSearchDTO(string q, string longitude, string latitude){
@@ -77,31 +75,10 @@ namespace Challenge.WebApi.Controllers
                  
             search.Longitude = longitude.ToDecimal() ;
             search.Latitude = latitude.ToDecimal();
-            //decimal.TryParse(longitude, out search.Longitude);
-            //decimal.TryParse(latitude, out search.Latitude);
-
+            
             return search;
         }
 
-        private Suggestions CreateReturnObject(List<Location> locations){
-            var suggestionsReturn = new Suggestions();
-
-            suggestionsReturn.ListSuggestion = new List<Suggestions.Suggestion>();
-                
-            if(locations.Count() > 0){
-                
-                var suggestions = from o in locations
-                                select new Suggestions.Suggestion {
-                                    Name= o.Name, 
-                                    Latitude = o.Latitude.ToString(), 
-                                    Longitude = o.Longitude.ToString(),
-                                    Score = 1
-                                };
-
-                suggestionsReturn.ListSuggestion.AddRange(suggestions);
-            }
-
-            return suggestionsReturn;
-        }
+        
     }
 }
