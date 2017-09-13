@@ -43,6 +43,8 @@ namespace Challenge.Infrastructure
                 };
 
             // TODO: Find the way to call ASYNC
+            // Here's the way to use more complex search criteries: http://danielcoding.net/working-with-azure-search-in-c-net/
+            // And from the docs about geo: https://docs.microsoft.com/pt-br/rest/api/searchservice/odata-expression-syntax-for-azure-search
             results = indexClientForQueries.Documents.Search<Location>(
                 String.Concat(search.Word, "~"), parameters);
 
