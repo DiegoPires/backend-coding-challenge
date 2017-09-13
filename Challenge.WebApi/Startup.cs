@@ -43,7 +43,7 @@ namespace Challenge.WebApi
             services.AddMvc();
 
             // inject our service to search location
-            services.AddTransient<ILocationService, LocationService>();
+            services.AddTransient<ISuggestionService, SuggestionService>();
 
             // Register the Swagger generator, defining one or more Swagger documents
             services.AddSwaggerGen(c =>

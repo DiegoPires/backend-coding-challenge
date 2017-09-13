@@ -16,13 +16,13 @@
     [Route("api/v1/[controller]")]
     public class SuggestionsController : Controller
     {
-        ILocationService _service;
+        ISuggestionService _service;
 
         /// <summary>
         /// Constructor of the controller with injection of the desired service
         /// </summary>
         /// <param name="service"></param>
-        public SuggestionsController(ILocationService service){
+        public SuggestionsController(ISuggestionService service){
             _service = service;
         }
 
@@ -61,7 +61,7 @@
                 Search searchDTO = CreateSearchDTO(q, longitude, latitude);
                 
                 // call the repository
-                var suggestions = await _service.GetLocations(searchDTO);
+                suggestions = await _service.GetSuggestions(searchDTO);
                 
             }else{
                 suggestions.ListSuggestion = new List<Suggestions.Suggestion>();
@@ -78,7 +78,5 @@
             
             return search;
         }
-
-        
     }
 }
