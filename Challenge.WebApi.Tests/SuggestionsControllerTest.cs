@@ -18,7 +18,7 @@ namespace Challenge.WebApi.Tests
         public async Task ReturnNothingWhenNothingIsGivenAsTheRechercheCriteria()
         {
             // mock prep
-            var mockService = new Mock<ILocationService>();
+            var mockService = new Mock<ISuggestionService>();
             
             // Declaration and call to the controller
             var controller = new SuggestionsController(mockService.Object);
@@ -42,19 +42,22 @@ namespace Challenge.WebApi.Tests
             search.Latitude = 0m;
             search.Longitude = 0m;
 
-            var locations = new List<Location>();
-            locations.Add(new Location {
+            var suggestions = new Suggestions();
+            suggestions.ListSuggestion = new List<Suggestions.Suggestion>();
+
+            suggestions.ListSuggestion.Add(new Suggestions.Suggestion {
                 Name = "wordwithana",
-                Latitude = 1.1m,
-                Longitude = 1.1m
+                Latitude = "1.1",
+                Longitude = "1.1",
+                Score = 1
             });
 
             // Configure the mock of the service to return what we want for the test
             // TODO: Doesnt work now, GetLocations is not overloaded, locations return nothing
             // and crashs the test
-            var mockService = new Mock<ILocationService>();
-            mockService.Setup(repo => repo.GetLocations(search))
-                .Returns(Task.FromResult(locations));
+            var mockService = new Mock<ISuggestionService>();
+            mockService.Setup(repo => repo.GetSuggestions(search))
+                .Returns(Task.FromResult(suggestions));
 
             // Declaration and call to the controller
             var controller = new SuggestionsController(mockService.Object);
