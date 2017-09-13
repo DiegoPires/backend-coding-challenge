@@ -99,4 +99,6 @@ Begin by forking this repo and cloning your fork. GitHub has apps for [Mac](http
 - Implemented a little test to my service layer too while developpement the layer. It runs direct to Azure Search.
 - Azure Search was chosen because I was already thinking to host the API on Azure and found this IaaS that looked promising. It took all the problems of hosting a database with support for ElasticSearch and it has a strong case about been easy to scale. Founding a start tutorial was not so complicated, just for some details of implementation it's harder to find material. The final implementation it's missing search for the geolocalization and the score going from 0 to 1 (Right now it has it's own algorithm)
 - Overall, I would say it's a good first MVP, need some more time for the details, but offers enought room to grow. And definitly, all the tech stack played a little role on the adaptation.
-- Still not deployed anywhere, plan to use Azure
+- Deployed on the adress: http://coveo-challenge-api.azurewebsites.net/api/v1/suggestions
+- For swagger doc, just go to the root http://coveo-challenge-api.azurewebsites.net/api/v1/
+- It's just an Azure Web app connect with this github repo, it deploys automatically when code is pushed without taking in consideration the tests. The fille appsettings.json was removed from the repo, because it contained my private key for the Azure Search API, so I neeeded to add manually. Ideally this is not the ideal scenario for a real prod application, was just done this way for the sake of been available for the challenge
