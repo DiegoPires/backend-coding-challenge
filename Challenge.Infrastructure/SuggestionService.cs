@@ -43,7 +43,8 @@ namespace Challenge.Infrastructure
                 };
 
             // TODO: Find the way to call ASYNC
-            results = indexClientForQueries.Documents.Search<Location>(search.Word, parameters);
+            results = indexClientForQueries.Documents.Search<Location>(
+                String.Concat(search.Word, "~"), parameters);
 
             return CreateReturnObject(results);
         }

@@ -197,17 +197,18 @@ namespace Challenge.Seed
             SearchParameters parameters;
             DocumentSearchResult<Location> results;
 
-            Console.WriteLine("Search the entire index for the term 'qu' and return only the name field:\n");
+            Console.WriteLine("Search the entire index for the term and return only the name field:\n");
 
             parameters =
                 new SearchParameters()
                 {
                     Select = new[] { "name", "geo" },
                     Query​Type = Microsoft.Azure.Search.Models.QueryType.Full,
-                    SearchFields = new [] { "name", "asciiName", "alternatifName"}
+                    SearchFields = new [] { "name", "asciiName", "alternatifName"},
+                    SearchMode = SearchMode.All
                 };
 
-            results = indexClient.Documents.Search<Location>("qu", parameters);
+            results = indexClient.Documents.Search<Location>("qu~", parameters);
 
             WriteDocuments(results);
         }
